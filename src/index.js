@@ -7,5 +7,5 @@ const unsubscribe = store.subscribe(()=> {
   console.log('store changed', store.getState());
 })
 
-store.dispatch(bugAdded("Bug 1 Added"));
-store.dispatch(bugResolved(1));
+store.dispatch(bugAdded({description :"Bug 1 Added" }));
+store.dispatch(bugResolved( { id: 1 }));

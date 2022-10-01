@@ -1,5 +1,6 @@
 import * as toolkitRaw from '@reduxjs/toolkit';
 const { createSlice } = toolkitRaw.default ?? toolkitRaw;
+import { createSelector } from 'reselect'
 
 let lastId = 0;
 
@@ -24,6 +25,11 @@ const bugsSlice = createSlice({
   }
 })
 
+export const getUnresolvedBugs = createSelector(
+  state=> state.entities.bugs,
+  state=> state.entities.project,
+  (bugs, projects) => bugs.filter(bug => !bug.isResolved)
+)
 export const { bugAdded, bugResolved, bugRemoved } = bugsSlice.actions
 export default bugsSlice.reducer
 
